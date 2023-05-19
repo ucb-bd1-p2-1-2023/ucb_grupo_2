@@ -9,28 +9,33 @@
 </head>
 <body>
     <div class="box">
-        <h1 class="title is-1">🚘 Formulario Uber</h1>
+        <h1 class="title is-1">🚘 Formulario Vehiculo</h1>
         <h2 class="subtitle is-3">Por favor ingresa tus datos</h2>
     </div>
     <div class="box my-6">
         <div class="field">
-            <label class="label" for="firstName">Nombre:</label>
+            <label class="label" for="placa">Placa:</label>
             <div class="control">
-                <input class="input" type="text" id="firstName" placeholder="Ej: Carlos">
+                <input class="input" type="text" id="placa" placeholder="Ej: 5647KZD">
             </div>
         </div>
         <div class="field">
-            <label class="label" for="lastName">Apellido:</label>
+            <label class="label" for="marca">Marca:</label>
             <div class="control">
-                <input class="input" type="text" id="lastName" placeholder="Ej: Terraza">
+                <input class="input" type="text" id="marca" placeholder="Ej: Ford">
             </div>
         </div>
         <div class="field">
-            <label class="label" for="email">Email:</label>
+            <label class="label" for="color">Color:</label>
             <div class="control">
-                <input class="input" type="text" id="email" placeholder="Ej: carlos@gmail.com">
+                <input class="input" type="text" id="color" placeholder="Ej: Rojo">
             </div>
         </div>
+        <div class="field">
+            <label class="label" for="capacidad">Capacidad:</label>
+            <div class="control">
+                <input class="input" type="number" id="capacidad" placeholder="Ej: 10">
+            </div>
         <div class="block">
             <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Enviar</button>
         </div>
@@ -47,7 +52,7 @@
             }
             
 
-            const url = 'http://localhost:3000/driver';
+            //const url = 'http://localhost:3000/driver';
             const method = 'POST';
             const headers = {
                 'Accept': 'application/json',
@@ -61,4 +66,4 @@
         }
     </script>
 </body>
-</html>
+</html> 
