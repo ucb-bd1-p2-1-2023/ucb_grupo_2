@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>In Driver</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #24862c;
+        }
+
+        h1.title,
+        h2.subtitle {
+            color: #06ce49;
+            text-align: center;
+        }
+
+        input.input,
+        button.button.is-primary {
+            background-color: #60d36f;
+            color: #000000;
+        }
+
+        .box {
+            background-color: #6d6b6b;
+            margin: 2rem auto;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        button.button.is-meidum {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">🚘 Formulario Pagos</h1>
+        <h2 class="subtitle is-3">Por favor ingresa tus datos</h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="id_pago">Id pago:</label>
+            <div class="control">
+                <input class="input" type="number" id="id_pago" placeholder="">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="monto">Monto:</label>
+            <div class="control">
+                <input class="input" type="number" id="monto" placeholder="Bs">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="tipo_pago">Forma de pago:</label>
+            <div class="control">
+                <input class="input" type="text" id="tipo_pago" placeholder="">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="id_conductor">Id Conductor:</label>
+            <div class="control">
+                <input class="input" type="number" id="id_conductor" placeholder="Ej: 60703313">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="id_usuario">Id Usuario:</label>
+            <div class="control">
+                <input class="input" type="number" id="id_usuario" placeholder="Ej: 60703313">
+            </div>
+        </div>
+
+        <div class="block">
+            <button class="button is-primary is-medium is-fullwidth mt-6" onclick="submitForm()">Enviar</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+            function getValues() {
+                return {
+                    id_pago: document.getElementById('id_pago').value,
+                    monto: document.getElementById('monto').value,
+                    tipo_pago: document.getElementById('tipo_pago').value,
+                    id_conductor: document.getElementById('id_conductor').value,
+                    id_usuario: document.getElementById('id_usuario').value
+                };
+            }
+
+            const url = 'http://localhost:3000/pagos';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const metadata = { method, headers, body };
+            fetch(url, metadata)
+                .then(response => response.json())
+                .then(response => console.log(JSON.stringify(response)));
+        }
+    </script>
+</body>
+</html>

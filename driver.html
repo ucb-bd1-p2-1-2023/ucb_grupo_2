@@ -1,75 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <title>In Driver</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <title>In Driver</title>
+        <style>
+            body {
+                background-color: #0a0a0a;
+                color: #24862c;
+            }
+    
+            h1.title,
+            h2.subtitle {
+                color: #06ce49;
+                text-align: center;
+            }
+    
+            input.input,
+            button.button.is-primary {
+                background-color: #60d36f;
+                color: #000000;
+            }
+    
+            .box {
+                background-color: #6d6b6b;
+            }
+        </style>
+    </head>
 <body>
-    <div class="box">
-        <h1 class="title is-1">🚘 Formulario Conductor</h1>
-        <h2 class="subtitle is-3">Por favor ingresa tus datos</h2>
-    </div>
-    <div class="box my-6">
-        <div class="field">
-            <label class="label" for="firstName">Nombre:</label>
-            <div class="control">
-                <input class="input" type="text" id="firstName" placeholder="Ej: Carlos">
+    <section class="section">
+        <div class="container">
+            <h1 class="title is-1">🚖 Formulario Conductor 🚕</h1>
+            <h2 class="subtitle is-3">Por favor ingresa tus datos</h2>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <form>
+                    <div class="field">
+                        <label class="label" for="ci">Carnet de identidad:</label>
+                        <div class="control">
+                            <input class="input" type="number" id="ci" placeholder="Ej: 13163006">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="firstName">Nombre:</label>
+                        <div class="control">
+                            <input class="input" type="text" id="firstName" placeholder="Ej: Carlos">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="lastName">Apellido:</label>
+                        <div class="control">
+                            <input class="input" type="text" id="lastName" placeholder="Ej: Terraza">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="telf">Nro Celular:</label>
+                        <div class="control">
+                            <input class="input" type="number" id="telf" placeholder="Ej: 60703313">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="email">Email:</label>
+                        <div class="control">
+                            <input class="input" type="text" id="email" placeholder="Ej: carlos@gmail.com">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="city">Ciudad:</label>
+                        <div class="control">
+                            <input class="input" type="text" id="city" placeholder="Ej: Cochabamba">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="placa">Placa del vehiculo:</label>
+                        <div class="control">
+                            <input class="input" type="number" id="placa" placeholder="Ej: 5647">
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-primary" onclick="submitForm()">Enviar</button>
+                        </div>
+                        <div class="control">
+                            <button class="button is-text">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="field">
-            <label class="label" for="lastName">Apellido:</label>
-            <div class="control">
-                <input class="input" type="text" id="lastName" placeholder="Ej: Terraza">
-            </div>
-        </div>
-        <div class="field">
-            <label class="label" for="email">Email:</label>
-            <div class="control">
-                <input class="input" type="text" id="email" placeholder="Ej: carlos@gmail.com">
-            </div>
-        </div>
-        <div class="field">
-            <label class="label" for="telf">Teléfono:</label>
-            <div class="control">
-                <input class="input" type="number" id="telf" placeholder="Ej: 60703313">
-        </div>
-        <div class="field">
-            <label class="label" for="ci">C.I.:</label>
-            <div class="control">
-                <input class="input" type="text" id="ci" placeholder="Ej: 13163006">
-            </div>
-        </div>
-        <div class="block">
-            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Enviar</button>
-        </div>
-    </div>
+    </section>
     <script>
         function submitForm() {
-
             function getValues() {
                 return {
+                    ci: document.getElementById('ci').value,
                     firstName: document.getElementById('firstName').value,
                     lastName: document.getElementById('lastName').value,
                     email: document.getElementById('email').value,
+                    telf: document.getElementById('telf').value,
+                    city: document.getElementById('city').value,
+                    placa: document.getElementById('placa').value
                 }
             }
             
-
-            //const url = 'http://localhost:3000/driver';
+            const url = 'http://localhost:3000/driver';
             const method = 'POST';
             const headers = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             };
             const body = JSON.stringify(getValues());
-            const medatata = { method, headers, body };
-            fetch(url, medatata)
-            .then(response => response.json())
-            .then(response => console.log(JSON.stringify(response)))
+            const metadata = { method, headers, body };
+            fetch(url, metadata)
+                .then(response => response.json())
+                .then(response => console.log(JSON.stringify(response)))
         }
     </script>
 </body>
-</html> 
+</html>
